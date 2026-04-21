@@ -13,5 +13,11 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Display message
-        run: echo "CI Pipeline is running successfully!"
+      - name: Show files
+        run: ls
+
+      - name: Simulate build
+        run: echo "Building application..."
+
+      - name: Simulate test
+        run: echo "Running tests..."
