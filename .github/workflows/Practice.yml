@@ -11,7 +11,7 @@ jobs:
    -name: check files
     run: ls
    -name: check index.html exists
-    run: test -f index.html 
+    run: test -f wrongfile.html 
     echo "File missing && exit-1"
    -name: Build step
     run: echo "Bulding project..."
