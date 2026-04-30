@@ -6,21 +6,18 @@ on:
       - main
 
 jobs:
-  docker-build:
+  docker:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout Code
         uses: actions/checkout@v3
 
-      - name: Check files
-        run: ls
-
       - name: Build Docker Image
-        run: docker build -t my-website .
+        run: docker build -t ${{ DOCKER_USERNAME }}/my-website:latest .
 
-      - name: Run Container (Test)
-        run: docker run -d -p 8080:80 my-website
+      - name: Login to Docker Hub
+        run: echo "${{ DOCKER_PASSWORD }}" | docker login -u "${{ DOCKER_PASSWORD }}" --password-stdin
 
-      - name: Verify Container
-        run: docker ps
+      - name: Push Docker Image
+        run: docker push ${{ DOCKER_USERNAME }}/my-website:latest
